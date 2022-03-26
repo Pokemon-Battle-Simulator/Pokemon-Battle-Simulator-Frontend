@@ -1,0 +1,25 @@
+<form class='form-controller' [ngStyle]='{display:getLoginDisplay()}'>
+  <h3 class='text-center'>Pokemon Battle Simulator</h3>
+  <div class='form-group'>
+    <input class='form-control' type='text' placeholder="username" (input)='setUserName($event)'>
+    <input class='form-control' type='password' placeholder="password" (input)='setPassword($event)'>
+  </div>
+
+  <button class='btn btn-primary' (click)='setLoginPayload($event)'>Log In</button>
+  <p class='h6 text-info' (click)='toggleExistingUser()'>Dont have an account yet? register here.</p>
+</form>
+
+<form class='form-controller' [ngStyle]='{display:getRegisterDisplay()}'>
+  <h3 class='text-center'>Registration Form</h3>
+  <div class='form-group'>
+    <input class='form-control' type='text' placeholder="First Name" (input)='setFirstName($event)'>
+    <input class='form-control' type='text' placeholder="Last Name" (input)='setLastName($event)'>
+    <input class='form-control' type='email' placeholder="Email" (input)='setEmail($event)'>
+    <input class='form-control' type='text' placeholder="Username" (input)='setUserName($event)'>
+    <input class='form-control' type='password' placeholder="Password" (input)='setPassword($event)'>
+    <input class='form-control' type='text' placeholder="Favorite Pokemon" (input)='setFavoritePokemon($event)'>
+  </div>
+
+  <button class='btn btn-primary' (click)='setRegistrationPayload($event)'>Sign Up</button>
+  <p class='h6 text-info' (click)='toggleExistingUser()'>Already have an account? Login here.</p>
+</form>

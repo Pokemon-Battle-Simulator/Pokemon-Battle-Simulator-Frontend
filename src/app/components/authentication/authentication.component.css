@@ -1,0 +1,11 @@
+.form-controller{
+  width:25% !important;
+  margin:0 auto;
+  padding:2%;
+  border: solid black 2px;
+  border-radius: 5%;;
+}
+input{
+  margin-bottom:5% !important;
+}
+
