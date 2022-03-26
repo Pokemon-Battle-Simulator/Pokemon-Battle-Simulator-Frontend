@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { response } from 'express';
+import { format } from 'path';
 
 @Component({
   selector: 'app-authentication',
@@ -15,7 +18,7 @@ export class AuthenticationComponent implements OnInit {
   password:string = ''
   favoritePokemon:string = ''
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -67,6 +70,16 @@ export class AuthenticationComponent implements OnInit {
     }
 
     console.log(body)
+
+    //Send http request. The Angular http client will automatically
+    //convert our object into JSON format. subscribe gives us access
+    //to the response object. A request will not be sent unless you
+    //subscribe.
+    this.http.post('url-to-java-backend', body)
+    .subscribe(responseData => {
+      console.log(responseData)
+    })
+
   }
 
   setLoginPayload(event):void{
