@@ -5,7 +5,7 @@
     <input class='form-control' type='password' placeholder="password" (input)='setPassword($event)'>
   </div>
 
-  <button class='btn btn-primary' (click)='setLoginPayload($event)'>Log In</button>
+  <button class='btn btn-primary' (click)='setLoginPayload($event)' (click)='navigateToManu()'>Log In</button>
   <p class='h6 text-info' (click)='toggleExistingUser()'>Dont have an account yet? register here.</p>
 </form>
 
@@ -20,6 +20,6 @@
     <input class='form-control' type='text' placeholder="Favorite Pokemon" (input)='setFavoritePokemon($event)'>
   </div>
 
-  <button class='btn btn-primary' (click)='setRegistrationPayload($event)'>Sign Up</button>
+  <button class='btn btn-primary' (click)='setRegistrationPayload($event)' >Sign Up</button>
   <p class='h6 text-info' (click)='toggleExistingUser()'>Already have an account? Login here.</p>
 </form>

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { response } from 'express';
 import { format } from 'path';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentication',
@@ -18,7 +19,7 @@ export class AuthenticationComponent implements OnInit {
   password:string = ''
   favoritePokemon:string = ''
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -92,5 +93,9 @@ export class AuthenticationComponent implements OnInit {
     }
 
     console.log(body)
+  }
+
+  navigateToManu():void{
+    this.router.navigateByUrl('/main-menu')
   }
 }

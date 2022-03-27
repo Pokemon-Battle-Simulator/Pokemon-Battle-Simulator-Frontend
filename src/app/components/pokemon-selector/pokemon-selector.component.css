@@ -39,12 +39,8 @@ img{
   background-color:red;
 }
 
-.search-btn{
-  background-color: rgb(16, 0, 235);
-  margin-left:1%;
-  color:white;
-  border: solid rgb(16, 0, 235) 2px;
-  font-weight:bold;
+.btn{
+ margin-bottom:2%;
 }
 
 .search{

@@ -83,7 +83,7 @@ export class PokemonSelectorComponent implements OnInit {
             }
           }
         }
-
+        fourMoves = []
         if(key == 'moves'){
            let numberOfMoves = 1
            for(let index = 0; index < pokemonData[key].length; index++){
