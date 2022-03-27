@@ -81,6 +81,7 @@ export class AuthenticationComponent implements OnInit {
       console.log(responseData)
     })
 
+    this.router.navigateByUrl('/main-menu')
   }
 
   setLoginPayload(event):void{
