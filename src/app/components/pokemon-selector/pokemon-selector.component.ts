@@ -16,7 +16,8 @@ export class PokemonSelectorComponent implements OnInit {
 
   pokemonAPI = []
   pokemonDataObjects = []
-
+  pokemonToFind = ''
+  search = false
 
   constructor(private http: HttpClient) { }
 

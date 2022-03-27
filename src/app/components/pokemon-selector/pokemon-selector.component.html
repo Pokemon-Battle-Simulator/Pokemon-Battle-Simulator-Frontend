@@ -1,8 +1,28 @@
-<ul>
-  <li *ngFor='let pokemon of getPokemon()'>
-    <h4>{{pokemon.name}}</h4>
-    <h4>{{pokemon.order}}</h4>
-    <h4>{{pokemon.characterSelectionSprite}}</h4>
-    <h4>{{pokemon.showCaseSprite}}</h4>
+
+<ul *ngFor='let pokemon of getPokemon()'>
+  <li>
+
+    <div  class='wrapper'>
+     <div class="one card">
+        <div class="card-content">
+          <h3>{{pokemon.name}}</h3>
+          <h4># {{pokemon.order}}</h4>
+          <div class="img-container">
+            <img src={{pokemon.characterSelectionSprite}} />
+          </div>
+          <h4>{{pokemon.showCaseSprite}}</h4>
+
+          <div class="row">
+              <p class='col'>{{pokemon.moveOne}}</p>
+              <p class='col'>{{pokemon.moveTwo}}</p>
+              <p class='col'>{{pokemon.moveThree}}</p>
+              <p class='col'>{{pokemon.moveFour}}</p>
+          </div>
+          <div class='button-container'>
+            <button class='select-btn'>Select</button>
+          </div>
+        </div>
+     </div>
+    </div>
   </li>
 </ul>
