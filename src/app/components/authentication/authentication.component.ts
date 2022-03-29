@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { response } from 'express';
-import { format } from 'path';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service'
+import { User } from '../../models/user'
 
 @Component({
   selector: 'app-authentication',
@@ -11,92 +10,53 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationComponent implements OnInit {
 
-  existingUser:boolean = true;
-  firstName:string = ''
-  lastName:string = ''
-  email:string = ''
-  userName:string = ''
-  password:string = ''
-  favoritePokemon:string = ''
+  public existingUser:boolean = true;
+  public user = new User(0, '', '', '', '', '', '')
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
+    console.log(this.existingUser)
+
   }
 
-  toggleExistingUser():void{
+  public toggleExistingUser():void{
 
-    if(this.existingUser == true){
+    if(this.existingUser === true){
       this.existingUser = false;
     }else{
       this.existingUser = true;
     }
   }
 
-  getRegisterDisplay():string{
+  public getRegisterDisplay():string{
     return this.existingUser === true ? 'none' : 'block'
   }
-  getLoginDisplay():string{
+  public getLoginDisplay():string{
     return this.existingUser === true ? 'block' : 'none'
   }
-  setFirstName(event):void{
-    this.firstName = event.target.value
-  }
-  setLastName(event):void{
-    this.lastName = event.target.value
-  }
-  setEmail(event):void{
-    this.email = event.target.value
-  }
-  setUserName(event):void{
-    this.userName = event.target.value
-  }
-  setPassword(event):void{
-    this.password = event.target.value
-  }
-  setFavoritePokemon(event):void{
-    this.favoritePokemon = event.target.value
-  }
-  setRegistrationPayload(event):void{
+
+  public registerUser(event):void{
 
     event.preventDefault();
 
-    const body = {
-      firstName:this.firstName,
-      lastName:this.lastName,
-      email:this.email,
-      username:this.userName,
-      password:this.password,
-      favoritePokemon:this.favoritePokemon
-    }
+    this.userService.registerUser(this.user)
+    .subscribe(
+      data => console.log('Successful Registration'),
+      error => console.error('Registration Failed')
+    )
 
-    console.log(body)
-
-    //Send http request. The Angular http client will automatically
-    //convert our object into JSON format. subscribe gives us access
-    //to the response object. A request will not be sent unless you
-    //subscribe.
-    this.http.post('url-to-java-backend', body)
-    .subscribe(responseData => {
-      console.log(responseData)
-    })
 
     this.router.navigateByUrl('/main-menu')
   }
 
-  setLoginPayload(event):void{
+  public setLoginPayload(event):void{
 
     event.preventDefault()
 
-    const body = {
-      username:this.userName,
-      password:this.password
-    }
-
-    console.log(body)
   }
 
-  navigateToManu():void{
+  public navigateToManu():void{
     this.router.navigateByUrl('/main-menu')
   }
 }

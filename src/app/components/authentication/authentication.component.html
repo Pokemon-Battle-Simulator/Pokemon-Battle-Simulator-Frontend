@@ -1,8 +1,8 @@
 <form class='form-controller' [ngStyle]='{display:getLoginDisplay()}'>
   <h3 class='text-center'>Pokemon Battle Simulator</h3>
   <div class='form-group'>
-    <input class='form-control' type='text' placeholder="username" (input)='setUserName($event)'>
-    <input class='form-control' type='password' placeholder="password" (input)='setPassword($event)'>
+    <input class='form-control' type='text' placeholder='username' name='username' [(ngModel)]='user.username'>
+    <input class='form-control' type='password' placeholder='password' name='password' [(ngModel)]='user.password'>
   </div>
 
   <button class='btn btn-primary' (click)='setLoginPayload($event)' (click)='navigateToManu()'>Log In</button>
@@ -12,14 +12,14 @@
 <form class='form-controller' [ngStyle]='{display:getRegisterDisplay()}'>
   <h3 class='text-center'>Registration Form</h3>
   <div class='form-group'>
-    <input class='form-control' type='text' placeholder="First Name" (input)='setFirstName($event)'>
-    <input class='form-control' type='text' placeholder="Last Name" (input)='setLastName($event)'>
-    <input class='form-control' type='email' placeholder="Email" (input)='setEmail($event)'>
-    <input class='form-control' type='text' placeholder="Username" (input)='setUserName($event)'>
-    <input class='form-control' type='password' placeholder="Password" (input)='setPassword($event)'>
-    <input class='form-control' type='text' placeholder="Favorite Pokemon" (input)='setFavoritePokemon($event)'>
+    <input class='form-control' type='text' placeholder="First Name" name='firstName' [(ngModel)]='user.firstName'>
+    <input class='form-control' type='text' placeholder="Last Name" name='lastName' [(ngModel)]='user.lastName'>
+    <input class='form-control' type='email' placeholder="Email" name='email' [(ngModel)]='user.email'>
+    <input class='form-control' type='text' placeholder="Username" name='username' [(ngModel)]='user.username'>
+    <input class='form-control' type='password' placeholder="Password" name='password' [(ngModel)]='user.password'>
+    <input class='form-control' type='text' placeholder="Favorite Pokemon" name='favoritePokemon' [(ngModel)]='user.favoritePokemon'>
   </div>
 
-  <button class='btn btn-primary' (click)='setRegistrationPayload($event)' >Sign Up</button>
+  <button class='btn btn-primary' (click)='registerUser($event)' >Sign Up</button>
   <p class='h6 text-info' (click)='toggleExistingUser()'>Already have an account? Login here.</p>
 </form>
