@@ -8,6 +8,7 @@ export class User {
   password:string
   favoritePokemon:string
 
+  //For user registration
   constructor(id: number, firstName:string, lastName:string, email:string, username:string, password:string, favoritePokemon:string){
     this.id = id
     this.firstName = firstName
@@ -17,6 +18,5 @@ export class User {
     this.password = password
     this.favoritePokemon = favoritePokemon
   }
-
 
 }

@@ -20,4 +20,8 @@ export class UserService {
   registerUser(user: User): Observable<User> {
     return this.http.post<User>(`${userUrl}/register`, user, this.httpOptions)
   }
+
+  logInUser(user: User): Observable<User> {
+    return this.http.post<User>(`${userUrl}/login`, user, this.httpOptions)
+  }
 }
