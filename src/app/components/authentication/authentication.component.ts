@@ -42,13 +42,13 @@ export class AuthenticationComponent implements OnInit {
 
     this.userService.registerUser(this.user)
     .subscribe(
-      data => console.log('Registration: Successful Request'),
-      error => console.error('Registration: Request Failed')
+      data => console.log(data.username + ' has successfully registererd.'),
+      error => console.error(error)
     )
 
     //See if there is a way to get a response object back that ensures
     //the registration was successful. When successful then navigate to new route.
-    this.navigateToManu()
+    //this.navigateToManu()
   }
 
   public loginUser(event):void{

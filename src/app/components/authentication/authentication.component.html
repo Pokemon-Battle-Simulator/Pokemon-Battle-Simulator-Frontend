@@ -5,7 +5,7 @@
     <input class='form-control' type='password' placeholder='password' name='password' [(ngModel)]='user.password'>
   </div>
 
-  <button class='btn btn-primary' (click)='setLoginPayload($event)' (click)='navigateToManu()'>Log In</button>
+  <button class='btn btn-primary' (click)='loginUser($event)' (click)='navigateToManu()'>Log In</button>
   <p class='h6 text-info' (click)='toggleExistingUser()'>Dont have an account yet? register here.</p>
 </form>
 
