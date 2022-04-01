@@ -1,9 +1,9 @@
 .form-controller{
-  width:25% !important;
+  width:35% !important;
   margin:0 auto;
   padding:2%;
   border: solid black 2px;
-  border-radius: 5%;;
+  border-radius: 5%;
 }
 input{
   margin-bottom:5% !important;
@@ -11,4 +11,10 @@ input{
 a{
   color:white;
   text-decoration: none;
+}
+
+.p-title{
+  -webkit-text-stroke: 1.7px blue;
+  color: #ffcb05;
+  font-weight: 800;
 }

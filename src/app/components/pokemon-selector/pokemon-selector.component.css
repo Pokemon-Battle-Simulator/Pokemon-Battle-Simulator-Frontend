@@ -1,3 +1,8 @@
+h3{
+  -webkit-text-stroke: 1.7px blue;
+  color: #ffcb05;
+  font-weight: 800;
+}
 
 ul{
   list-style:none;
@@ -7,6 +12,8 @@ ul{
   border: solid black 2px;
   width: 98%;
   margin:5px auto;
+  background-color: #ffcb05;
+  color: #2a75bb;
 }
 
 h3, h4, .button-container, .img-container{
@@ -45,8 +52,8 @@ img{
 
 .container{
   text-align:center;
-  margin-top:5%;
-  margin-bottom:3%;
+  margin-top:2%;
+  margin-bottom:2%;
 }
 
 .grid {
