@@ -5,8 +5,8 @@ ul{
 
 .card{
   border: solid black 2px;
-  width:50%;
-  margin:0 auto;
+  width: 98%;
+  margin:5px auto;
 }
 
 h3, h4, .button-container, .img-container{
@@ -49,4 +49,7 @@ img{
   margin-bottom:3%;
 }
 
-
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}

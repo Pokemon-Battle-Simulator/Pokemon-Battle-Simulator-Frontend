@@ -1,8 +1,7 @@
 
 <h3>Pokemon Selector</h3>
-<ul *ngFor='let pokemon of getPokemon()'>
-  <li>
-
+<div class="grid">
+<ng-container *ngFor='let pokemon of getPokemon()'>
     <div  class='wrapper'>
      <div class="one card">
         <div class="card-content">
@@ -25,5 +24,5 @@
         </div>
      </div>
     </div>
-  </li>
-</ul>
+  </ng-container>
+</div>
