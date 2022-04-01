@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-//The map operator allows us to get some data and
-//return new data which is then automatically re-wrapped
-//into an observable to that we can still subscribe to it.
+import { Router } from '@angular/router';
+import { url } from '../../../environments/environment'
 import { map } from 'rxjs/operators';
 
+
+const sessionUrl = url + '/session'
 
 @Component({
   selector: 'app-pokemon-selector',
@@ -14,12 +14,11 @@ import { map } from 'rxjs/operators';
 })
 export class PokemonSelectorComponent implements OnInit {
 
-  pokemonAPI = []
   public pokemonDataObjects = []
-  pokemonToFind = ''
-  search = false
+  public messageBoolean = false
+  message = 'Waiting for other player.'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   //ngOnInit will run as soon as the page loads.
   ngOnInit(): void {
@@ -29,6 +28,7 @@ export class PokemonSelectorComponent implements OnInit {
   private fetchPokemon(){
 
     let fourMoves = []
+    let pokemonAPI =[]
     let pokemon = {
       pokemonAPIObject:{},
       name: '',
@@ -68,12 +68,12 @@ export class PokemonSelectorComponent implements OnInit {
       const pokemonArray = postArray[3]
 
       for(let key in pokemonArray){
-        this.pokemonAPI.push(pokemonArray[key].url)
+        pokemonAPI.push(pokemonArray[key].url)
       }
 
     //iterate through each pokemon API and get the properties.
-    for(let key in this.pokemonAPI){
-      this.http.get(this.pokemonAPI[key])
+    for(let key in pokemonAPI){
+      this.http.get(pokemonAPI[key])
       .subscribe(pokemonData => {
 
         //console.log(pokemonData)
@@ -179,6 +179,19 @@ export class PokemonSelectorComponent implements OnInit {
 
   public getPokemon(){
     return this.pokemonDataObjects
+  }
+
+  public cancelCharacterSelection(){
+    this.http.delete(`${sessionUrl}/delete`).subscribe()
+    this.router.navigateByUrl('/main-menu')
+  }
+
+  public toggleMessage(){
+    if(this.messageBoolean == false){
+      this.messageBoolean = true
+    }else{
+      this.messageBoolean = false
+    }
   }
 
 

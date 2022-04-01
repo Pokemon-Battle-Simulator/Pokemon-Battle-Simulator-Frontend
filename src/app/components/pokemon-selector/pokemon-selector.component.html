@@ -1,5 +1,10 @@
 
 <h3>Pokemon Selector</h3>
+
+<div class="container">
+  <button class="btn btn-primary" (click)='cancelCharacterSelection()'>Cancel</button>
+</div>
+
 <div class="grid">
 <ng-container *ngFor='let pokemon of getPokemon()'>
     <div  class='wrapper'>
@@ -19,7 +24,10 @@
               <p class='col'>{{pokemon.moveFour.name}}</p>
           </div>
           <div class='button-container'>
-            <button class='btn btn-primary'>Select</button>
+            <button (click)='toggleMessage()' class='btn btn-primary'>Select</button>
+          </div>
+          <div *ngIf="messageBoolean">
+            <p>{{message}}</p>
           </div>
         </div>
      </div>
