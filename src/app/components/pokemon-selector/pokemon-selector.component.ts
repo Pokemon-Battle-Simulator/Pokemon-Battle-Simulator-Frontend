@@ -17,6 +17,8 @@ export class PokemonSelectorComponent implements OnInit {
   public pokemonDataObjects = []
   public messageBoolean = false
   message = 'Waiting for other player.'
+  public showcaseSprite = ''
+  public showcaseName = ''
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -194,5 +196,9 @@ export class PokemonSelectorComponent implements OnInit {
     }
   }
 
+  public setPokemonShowcase(image:string, name:string){
+    this.showcaseSprite = image
+    this.showcaseName = name
+  }
 
 }

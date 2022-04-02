@@ -12,9 +12,3 @@ a{
   color:white;
   text-decoration: none;
 }
-
-.p-title{
-  -webkit-text-stroke: 1.7px blue;
-  color: #ffcb05;
-  font-weight: 800;
-}

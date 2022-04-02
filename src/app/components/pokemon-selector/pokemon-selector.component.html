@@ -1,9 +1,14 @@
-
-
-
 <div class="container">
   <h3>Pokemon Selector</h3>
   <button class="btn btn-primary" (click)='cancelCharacterSelection()'>Cancel</button>
+</div>
+
+<div *ngIf="messageBoolean" class='container showcaseContainer'>
+  <h2 class='showcaseName'>{{showcaseName}}</h2>
+  <img src={{showcaseSprite}} class='showcaseimage'/>
+  <div *ngIf="messageBoolean">
+    <p class='text-primary'>{{message}}</p>
+  </div>
 </div>
 
 <div class="grid">
@@ -16,19 +21,15 @@
           <div class="img-container">
             <img src={{pokemon.characterSelectionSprite}} />
           </div>
-          <h4>{{pokemon.showCaseSprite}}</h4>
-
           <div class="row">
-              <p class='col'>{{pokemon.moveOne.name}}</p>
-              <p class='col'>{{pokemon.moveTwo.name}}</p>
-              <p class='col'>{{pokemon.moveThree.name}}</p>
-              <p class='col'>{{pokemon.moveFour.name}}</p>
+              <p class='col move'>{{pokemon.moveOne.name}}</p>
+              <p class='col move'>{{pokemon.moveTwo.name}}</p>
+              <p class='col move'>{{pokemon.moveThree.name}}</p>
+              <p class='col move'>{{pokemon.moveFour.name}}</p>
           </div>
           <div class='button-container'>
-            <button (click)='toggleMessage()' class='btn btn-primary'>Select</button>
-          </div>
-          <div *ngIf="messageBoolean">
-            <p>{{message}}</p>
+            <button (click)='toggleMessage()' (click)='setPokemonShowcase(pokemon.characterSelectionSprite,
+            pokemon.name)' class='btn btn-primary'>Select</button>
           </div>
         </div>
      </div>
