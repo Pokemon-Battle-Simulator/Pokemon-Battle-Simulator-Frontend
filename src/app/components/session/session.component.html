@@ -1,0 +1,30 @@
+<p>session works!</p>
+<div>
+    <div> <!-- battle scene-->
+        <div class="opponent">
+            <div class="hp-bar">
+
+            </div>
+            <div class="front-sprite">
+
+            </div>
+        </div>
+        <div class="player">
+            <div class="back=sprite">
+
+            </div>
+            <div class="hp-bar">
+
+            </div>
+        </div>
+    </div>
+    <div> <!-- what will you do textbox -->>
+
+    </div>
+    <!-- move selection -->
+    <ul *ngFor = move of {{cur_pokemon.moves}}>
+        <li>
+            <button (click)="moveSelect(move.id)" class="btn btn-primary">{{move.name}}</button>
+        </li>
+    </ul>
+</div>
