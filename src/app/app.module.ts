@@ -8,7 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { PokemonSelectorComponent } from './components/pokemon-selector/pokemon-selector.component';
 import { ErrorComponent } from './components/error/error.component';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { SessionComponent } from './components/session/session.component'
 
 
 //Each rout is represented by a Javascript object.
@@ -18,6 +19,8 @@ const appRoutes: Routes = [
   {path:'main-menu', component: MainMenuComponent},
   //This will automatically append localhost:4200/ in front.
   {path:'pokemon-selector', component: PokemonSelectorComponent},
+
+  {path:'session', component: SessionComponent},
 
   {path:'*', component: ErrorComponent}
 ]
@@ -29,6 +32,7 @@ const appRoutes: Routes = [
     PokemonSelectorComponent,
     ErrorComponent,
     MainMenuComponent,
+    SessionComponent,
   ],
   imports: [
     BrowserModule,
