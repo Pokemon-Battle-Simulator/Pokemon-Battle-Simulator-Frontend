@@ -16,7 +16,6 @@ export class AuthenticationComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.existingUser)
 
   }
 
@@ -55,7 +54,7 @@ export class AuthenticationComponent implements OnInit {
 
     event.preventDefault()
 
-    this.userService.logInUser(this.user)
+    this.userService.logInUser(this.user.username, this.user.password)
     .subscribe(
       data => console.log('Login: Successful Request'),
       error => console.log('Login: Request Failed')

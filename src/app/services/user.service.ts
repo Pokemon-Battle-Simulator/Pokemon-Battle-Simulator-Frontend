@@ -21,7 +21,11 @@ export class UserService {
     return this.http.post<User>(`${userUrl}/register`, user, this.httpOptions)
   }
 
-  logInUser(user: User): Observable<User> {
-    return this.http.post<User>(`${userUrl}/login`, user, this.httpOptions)
+  logInUser(username:string, password:string): Observable<any> {
+    console.log(username + ' ' + password)
+
+    const payload = { username, password}
+
+    return this.http.post<any>(`${userUrl}/login`, payload, {observe: 'response'})
   }
 }
