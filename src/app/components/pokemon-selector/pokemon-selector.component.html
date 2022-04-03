@@ -14,10 +14,12 @@
 <div class="grid">
 <ng-container *ngFor='let pokemon of getPokemon()'>
     <div  class='wrapper'>
-     <div class="one card">
+     <div class="shadow card">
         <div class="card-content">
-          <h3>{{pokemon.name}}</h3>
-          <h4># {{pokemon.order}}</h4>
+          <div class="card-title">
+            <h3>{{pokemon.name}}</h3>
+            <h4># {{pokemon.order}}</h4>
+          </div>
           <div class="img-container">
             <img src={{pokemon.characterSelectionSprite}} />
           </div>
@@ -29,7 +31,7 @@
           </div>
           <div class='button-container'>
             <button (click)='toggleMessage()' (click)='setPokemonShowcase(pokemon.characterSelectionSprite,
-            pokemon.name)' (click)='connectToSession()' class='btn btn-primary'>Select</button>
+            pokemon.name)' (click)='connectToSession()' class='select-btn btn btn-primary'>Select</button>
           </div>
         </div>
      </div>
