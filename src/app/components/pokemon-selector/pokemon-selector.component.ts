@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { url } from '../../../environments/environment'
 import { map } from 'rxjs/operators';
 
-
 const sessionUrl = url + '/session'
 
 @Component({
@@ -201,4 +200,7 @@ export class PokemonSelectorComponent implements OnInit {
     this.showcaseName = name
   }
 
+  public connectToSession() {
+    this.router.navigateByUrl('/session');
+  }
 }
