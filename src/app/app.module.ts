@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PokemonSelectorComponent } from './components/pokemon-selector/pokemon-selector.component';
 import { ErrorComponent } from './components/error/error.component';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 
 
 //Each rout is represented by a Javascript object.

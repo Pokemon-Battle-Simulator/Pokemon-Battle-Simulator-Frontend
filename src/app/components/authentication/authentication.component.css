@@ -12,3 +12,7 @@ a{
   color:white;
   text-decoration: none;
 }
+.errorMessage{
+  margin-top:5%;
+  text-align: center;
+}
