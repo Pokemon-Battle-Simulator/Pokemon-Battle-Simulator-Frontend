@@ -4,6 +4,7 @@
   padding:2%;
   border: solid black 2px;
   border-radius: 5%;
+  margin-top:5%;
 }
 input{
   margin-bottom:5% !important;
@@ -12,3 +13,47 @@ a{
   color:white;
   text-decoration: none;
 }
+.errorMessage{
+  margin-top:5%;
+  text-align: center;
+}
+.shadow{
+  box-shadow: 10px 5px 5px grey;
+}
+.card-title{
+  color:white;
+  height:100px;
+  background-color:rgb(88, 88, 88);
+  margin-top: 0%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+h2{
+  margin-top: 0%;
+  letter-spacing: 2px;
+}
+.image{
+  width:100%;
+}
+.input-container{
+  margin-top:5%;
+}
+input{
+  font-size:20px;
+  padding:5%;
+  border: solid rgb(88, 88, 88) 2px;
+}
+::placeholder{
+  color:rgb(88, 88, 88);
+  letter-spacing: 2px;
+}
+.btn{
+  color:#0275d8;
+  border:solid #0275d8 2px;
+  background-color: white;
+}
+.btn:hover{
+  background-color:#0275d8;
+  color:white;
+}
+

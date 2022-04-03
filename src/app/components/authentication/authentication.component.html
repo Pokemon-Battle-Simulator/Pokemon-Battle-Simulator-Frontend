@@ -1,17 +1,24 @@
-<form class='form-controller' [ngStyle]='{display:getLoginDisplay()}'>
-  <h2 class=' p-title text-center'>Pokemon Battle Simulator</h2>
+<form class='shadow form-controller' [ngStyle]='{display:getLoginDisplay()}'>
+  <div class='card-title'>
+    <h2 class='p-title text-center'>Pokemon Battle Simulator</h2>
+  </div>
   <div class='form-group'>
-    <input class='form-control' type='text' placeholder='username' name='username' [(ngModel)]='user.username'>
-    <input class='form-control' type='password' placeholder='password' name='password' [(ngModel)]='user.password'>
+    <div class='image-container'>
+      <img class="image" src='../../../assets/login-image.jpg' />
+    </div>
+    <div class="input-container">
+      <input class='form-control' type='text' placeholder='username' name='username' [(ngModel)]='user.username'>
+      <input class='form-control' type='password' placeholder='password' name='password' [(ngModel)]='user.password'>
+    </div>
   </div>
 
-  <button class='btn btn-primary' (click)='loginUser($event)' (click)='navigateToManu()'>Log In</button>
+  <button type='button' class='btn' (click)='loginUser($event)'>Log In</button>
   <p class='h6 text-info' (click)='toggleExistingUser()'>Dont have an account yet? register here.</p>
 </form>
 
-<form class='form-controller' [ngStyle]='{display:getRegisterDisplay()}'>
-  <h3 class='text-center'>Registration Form</h3>
-  <div class='form-group'>
+<form class='shadow form-controller' [ngStyle]='{display:getRegisterDisplay()}'>
+    <h3 class='text-center'>Registration Form</h3>
+  <div class='registration-form form-group'>
     <input class='form-control' type='text' placeholder="First Name" name='firstName' [(ngModel)]='user.firstName'>
     <input class='form-control' type='text' placeholder="Last Name" name='lastName' [(ngModel)]='user.lastName'>
     <input class='form-control' type='email' placeholder="Email" name='email' [(ngModel)]='user.email'>
@@ -20,6 +27,9 @@
     <input class='form-control' type='text' placeholder="Favorite Pokemon" name='favoritePokemon' [(ngModel)]='user.favoritePokemon'>
   </div>
 
-  <button class='btn btn-primary' (click)='registerUser($event)' >Sign Up</button>
+  <button class='btn btn btn-outline-primary' (click)='registerUser($event)' >Sign Up</button>
   <p class='h6 text-info' (click)='toggleExistingUser()'>Already have an account? Login here.</p>
 </form>
+<div class='errorMessage'>
+  <h4>{{errorMessage}}</h4>
+</div>

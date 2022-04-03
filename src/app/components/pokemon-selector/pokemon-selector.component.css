@@ -1,7 +1,14 @@
 h2, h3, h4{
   font-weight:bold;
 }
-
+.card-title{
+  background-color:#0275d8;
+  color:white;
+  letter-spacing: 2px;
+  padding-top:5%;
+  border-top-left-radius: 23px;
+  border-top-right-radius: 23px;
+}
 ul{
   list-style:none;
 }
@@ -9,8 +16,9 @@ ul{
 .card{
   border: solid black 2px;
   border-radius: 25px;
-  width: 98%;
+  width: 75%;
   margin:5px auto;
+  margin-top: 10%;
 }
 
 h3, h4, .button-container, .img-container{
@@ -70,4 +78,19 @@ img{
 .showcaseContainer{
   border: solid black 2px;
   border-radius:25px;
+}
+.shadow{
+  box-shadow: 10px 5px 5px grey;
+}
+.btn{
+  color:#0275d8;
+  border:solid #0275d8 2px;
+  background-color: white;
+}
+.btn:hover{
+  background-color:#0275d8;
+  color:white;
+}
+.select-btn{
+  margin-bottom:5%;
 }

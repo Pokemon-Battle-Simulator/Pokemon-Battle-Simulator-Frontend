@@ -1,3 +1,4 @@
+import { AppComponent } from './../../app.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service'
@@ -12,11 +13,11 @@ export class AuthenticationComponent implements OnInit {
 
   public existingUser:boolean = true;
   public user = new User(0, '', '', '', '', '', '')
+  public errorMessage = ''
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private appComponent: AppComponent) { }
 
   ngOnInit(): void {
-    console.log(this.existingUser)
 
   }
 
@@ -42,7 +43,10 @@ export class AuthenticationComponent implements OnInit {
 
     this.userService.registerUser(this.user)
     .subscribe(
-      data => console.log(data.username + ' has successfully registererd.'),
+      data => {
+        console.log(data.username + ' has successfully registererd.')
+        this.navigateToMenu();
+      },
       error => console.error(error)
     )
 
@@ -55,15 +59,25 @@ export class AuthenticationComponent implements OnInit {
 
     event.preventDefault()
 
-    this.userService.logInUser(this.user)
+    this.userService.logInUser(this.user.username, this.user.password)
     .subscribe(
-      data => console.log('Login: Successful Request'),
-      error => console.log('Login: Request Failed')
+      data => {
+        const token = data.headers.get('portal-token')
+
+        sessionStorage.setItem('token', token)
+
+        this.appComponent.updateUserData(data.body.firstName, data.body.lastName, data.body.username, data.body.email, data.body.favoritePokemon)
+
+        if(token){
+          this.navigateToMenu()
+        }
+      },
+      error => this.errorMessage = 'User with given credentials does not exist. Please try again.'
     )
 
   }
 
-  public navigateToManu():void{
+  public navigateToMenu():void{
     this.router.navigateByUrl('/main-menu')
   }
 }
