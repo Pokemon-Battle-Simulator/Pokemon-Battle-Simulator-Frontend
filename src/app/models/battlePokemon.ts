@@ -11,5 +11,9 @@ export class BattlePokemon {
     current_hp: number
     sprite: string
 
-    constructor() {}
+    constructor() {
+        this.stats = []
+        this.types = []
+        this.moves = []
+    }
 }

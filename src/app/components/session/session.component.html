@@ -3,18 +3,28 @@
     <div> <!-- battle scene-->
         <div class="opponent">
             <div class="hp-bar">
-
+                {{opp_pokemon.current_hp}}/{{opp_pokemon.stats[0]}}
+                {{opp_pokemon.stats[1]}}
+                {{opp_pokemon.stats[2]}}
+                {{opp_pokemon.stats[3]}}
+                {{opp_pokemon.stats[4]}}
+                {{opp_pokemon.stats[5]}}
             </div>
             <div class="front-sprite">
-
+                <img src={{opp_pokemon.sprite}}>
             </div>
         </div>
         <div class="player">
             <div class="back=sprite">
-
+                <img src={{cur_pokemon.sprite}}>
             </div>
             <div class="hp-bar">
-
+                {{cur_pokemon.current_hp}}/{{cur_pokemon.stats[0]}}
+                {{cur_pokemon.stats[1]}}
+                {{cur_pokemon.stats[2]}}
+                {{cur_pokemon.stats[3]}}
+                {{cur_pokemon.stats[4]}}
+                {{cur_pokemon.stats[5]}}
             </div>
         </div>
     </div>
@@ -22,9 +32,9 @@
 
     </div>
     <!-- move selection -->
-    <ul *ngFor = move of {{cur_pokemon.moves}}>
-        <li>
-            <button (click)="moveSelect(move.id)" class="btn btn-primary">{{move.name}}</button>
-        </li>
-    </ul>
+    <ng-container *ngFor='let move of cur_pokemon.moves'>
+        <div class="button-container">
+            <button (click)="moveSelect(move)" class="btn btn-primary">{{move}}</button>
+        </div>
+    </ng-container>
 </div>

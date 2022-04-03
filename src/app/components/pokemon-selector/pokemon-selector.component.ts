@@ -3,6 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { url } from '../../../environments/environment'
 import { map } from 'rxjs/operators';
+import { BattleDataService } from 'src/app/services/battle-data.service';
+import { User } from 'src/app/models/user';
+import { Session } from 'src/app/models/session';
+import { Pokemon } from 'src/app/models/pokemon';
+import { Team } from 'src/app/models/team';
 
 const sessionUrl = url + '/session'
 
@@ -19,7 +24,7 @@ export class PokemonSelectorComponent implements OnInit {
   public showcaseSprite = ''
   public showcaseName = ''
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private battleDataService: BattleDataService) { }
 
   //ngOnInit will run as soon as the page loads.
   ngOnInit(): void {
@@ -201,6 +206,17 @@ export class PokemonSelectorComponent implements OnInit {
   }
 
   public connectToSession() {
+    // for testing purposes only
+    let user = new User(1, "Ash", "Ketchum", "ash@pallet.net", "ashketchum", "gottacatchemall", "Pikachu");
+    let opp = new User(2, "Gary", "Oak", "gary@pallet.net", "blue", "smellyalater", "Raticate");
+    let dummy_team = new Team(0, "placeholder", new User(0, "placeholder", "placeholder", "placeholder", "placeholder", "placeholder", "placeholder"), []);
+    let user_poke = new Pokemon(1, dummy_team, 25, "mega-punch", "pay-day", "thunder-punch", "slam");
+    let opp_poke = new Pokemon(2, dummy_team, 6, "mega-punch", "fire-punch", "thunder-punch", "scratch");
+
+    this.battleDataService.changeSession(new Session(1, true, user, opp, "CHOOSING", "CHOOSING", "", "", user_poke, opp_poke, dummy_team, dummy_team));
+    this.battleDataService.changeUser(user);
+    this.battleDataService.changePokemon(user_poke);
+
     this.router.navigateByUrl('/session');
   }
 }
