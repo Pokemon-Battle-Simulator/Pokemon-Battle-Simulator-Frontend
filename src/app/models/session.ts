@@ -9,8 +9,8 @@ export class Session {
     user2: User
     user1_status: string
     user2_status: string
-    user1_move: number
-    user2_move: number
+    user1_move: string
+    user2_move: string
     user1_poke: Pokemon
     user2_poke: Pokemon
     user1_team: Team
@@ -22,8 +22,8 @@ export class Session {
         user2: User,
         user1_status: string,
         user2_status: string,
-        user1_move: number,
-        user2_move: number,
+        user1_move: string,
+        user2_move: string,
         user1_poke: Pokemon,
         user2_poke: Pokemon,
         user1_team: Team,

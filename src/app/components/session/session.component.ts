@@ -35,12 +35,18 @@ export class SessionComponent implements OnInit {
   constructor(private http: HttpClient, private sessionService: SessionService, private battleDataService: BattleDataService, private router: Router) {
     this.battleDataService.user
       .subscribe(
-        user => this.cur_user = user,
+        user => {
+          this.cur_user = user;
+          console.log(`Session: loaded user ${this.cur_user.id}, ${this.cur_user.username}`);
+        },
         error => console.log('Session: unable to get current user info')
       );
     this.battleDataService.pokemon
       .subscribe(
-        pokemon => this.cur_pokemon.object = pokemon,
+        pokemon => {
+          this.cur_pokemon.object = pokemon
+          console.log(`Session: loaded pokemon ${this.cur_pokemon.object.id}, ${this.cur_pokemon.object.pokeId}`);
+        },
         error => console.log('Session: unable to get current pokemon info')
       );
     this.battleDataService.session
@@ -75,16 +81,17 @@ export class SessionComponent implements OnInit {
     //     error => console.log('Session: unable to find a session')
     //   );
 
+    // get the moves of the current pokemon
     if (this.cur_user.id == this.session.user1.id) {
-      this.cur_pokemon.moves.push(this.getMove(this.session.user1_poke.move1_id));
-      this.cur_pokemon.moves.push(this.getMove(this.session.user1_poke.move2_id));
-      this.cur_pokemon.moves.push(this.getMove(this.session.user1_poke.move3_id));
-      this.cur_pokemon.moves.push(this.getMove(this.session.user1_poke.move4_id));
+      this.cur_pokemon.moves.push(this.getMove(this.session.user1_poke.move1_name));
+      this.cur_pokemon.moves.push(this.getMove(this.session.user1_poke.move2_name));
+      this.cur_pokemon.moves.push(this.getMove(this.session.user1_poke.move3_name));
+      this.cur_pokemon.moves.push(this.getMove(this.session.user1_poke.move4_name));
     } else {
-      this.cur_pokemon.moves.push(this.getMove(this.session.user2_poke.move1_id));
-      this.cur_pokemon.moves.push(this.getMove(this.session.user2_poke.move2_id));
-      this.cur_pokemon.moves.push(this.getMove(this.session.user2_poke.move3_id));
-      this.cur_pokemon.moves.push(this.getMove(this.session.user2_poke.move4_id));
+      this.cur_pokemon.moves.push(this.getMove(this.session.user2_poke.move1_name));
+      this.cur_pokemon.moves.push(this.getMove(this.session.user2_poke.move2_name));
+      this.cur_pokemon.moves.push(this.getMove(this.session.user2_poke.move3_name));
+      this.cur_pokemon.moves.push(this.getMove(this.session.user2_poke.move4_name));
     }
 
     // get all needed information from pokemon api for the current pokemon
@@ -159,7 +166,8 @@ export class SessionComponent implements OnInit {
                   return;
                 }
 
-                for (let double_damage_type of type['double_damage_from']) {
+                let double_damage_from: Object[] = type['double_damage_from'];
+                for (let double_damage_type of double_damage_from) {
                   if (!double_damage_type.hasOwnProperty('name')) {
                     console.log(`Session: unable to load double_damage_from[].name of ${typeInfo.name}`);
                     return;
@@ -174,7 +182,8 @@ export class SessionComponent implements OnInit {
                   return;
                 }
 
-                for (let half_damage_type of type['half_damage_from']) {
+                let half_damage_from: Object[] = type['half_damage_from'];
+                for (let half_damage_type of half_damage_from) {
                   if (!half_damage_type.hasOwnProperty('name')) {
                     console.log(`Session: unable to load half_damage_from[].name of ${typeInfo.name}`);
                     return;
@@ -189,7 +198,8 @@ export class SessionComponent implements OnInit {
                   return;
                 }
 
-                for (let no_damage_type of type['no_damage_from']) {
+                let no_damage_from: Object[] = type['no_damage_from'];
+                for (let no_damage_type of no_damage_from) {
                   if (!no_damage_type.hasOwnProperty('name')) {
                     console.log(`Session: unable to load no_damage_from[].name of ${typeInfo.name}`);
                     return;
@@ -211,6 +221,8 @@ export class SessionComponent implements OnInit {
         }
 
         this.cur_pokemon.sprite = p['sprites']['back_default'];
+
+        console.log(`Session: loaded current pokemon ${this.cur_pokemon.name}`);
       });
 
     // get all needed information from pokemon api for the opponent's pokemon
@@ -286,7 +298,8 @@ export class SessionComponent implements OnInit {
                   return;
                 }
 
-                for (let double_damage_type of type['double_damage_from']) {
+                let double_damage_from: Object[] = type['double_damage_from'];
+                for (let double_damage_type of double_damage_from) {
                   if (!double_damage_type.hasOwnProperty('name')) {
                     console.log(`Session: unable to load double_damage_from[].name of ${typeInfo.name}`);
                     return;
@@ -301,7 +314,8 @@ export class SessionComponent implements OnInit {
                   return;
                 }
 
-                for (let half_damage_type of type['half_damage_from']) {
+                let half_damage_from: Object[] = type['half_damage_from'];
+                for (let half_damage_type of half_damage_from) {
                   if (!half_damage_type.hasOwnProperty('name')) {
                     console.log(`Session: unable to load half_damage_from[].name of ${typeInfo.name}`);
                     return;
@@ -316,7 +330,8 @@ export class SessionComponent implements OnInit {
                   return;
                 }
 
-                for (let no_damage_type of type['no_damage_from']) {
+                let no_damage_from: Object[] = type['no_damage_from'];
+                for (let no_damage_type of no_damage_from) {
                   if (!no_damage_type.hasOwnProperty('name')) {
                     console.log(`Session: unable to load no_damage_from[].name of ${typeInfo.name}`);
                     return;
@@ -325,7 +340,7 @@ export class SessionComponent implements OnInit {
                   typeInfo.no_damage_from.push(no_damage_type['name']);
                 }
 
-                this.opp_pokemon.types.push(typeInfo);
+                this.cur_pokemon.types.push(typeInfo);
               },
               error => console.log(`Session: unable to get type information from ${typeUrl}`)
             );
@@ -338,6 +353,8 @@ export class SessionComponent implements OnInit {
         }
 
         this.opp_pokemon.sprite = p['sprites']['front_default'];
+
+        console.log(`Session: loaded opponent pokemon ${this.opp_pokemon.name}`);
       });
 
     // start out each pokemon with max hp
@@ -405,25 +422,18 @@ export class SessionComponent implements OnInit {
     this.move_ready = false;
   }
 
-  private getMove(move_id: number): Move {
+  private getMove(move_name: string): Move {
     let foundMove: Move;
 
-    this.http.get(`https://pokeapi.co/api/v2/move/${move_id}`)
+    this.http.get(`https://pokeapi.co/api/v2/move/${move_name}`)
       .subscribe(
         move => {
           foundMove = new Move();
-
-          // get the name of the move
-          if (!move.hasOwnProperty('name')) {
-            console.log(`Session: unable to get name of move with id ${move_id}`);
-            foundMove = undefined;
-            return;
-          }
-          foundMove.name = move['name'];
+          foundMove.name = move_name;
 
           // get the accuracy of the move
           if (!move.hasOwnProperty('accuracy')) {
-            console.log(`Session: unable to get accuracy of move ${foundMove.name}`);
+            console.log(`Session: unable to get accuracy of move ${move_name}`);
             foundMove = undefined;
             return;
           }
@@ -431,7 +441,7 @@ export class SessionComponent implements OnInit {
 
           // get the power of the move
           if (!move.hasOwnProperty('power')) {
-            console.log(`Session: unable to get power of move ${foundMove.name}`);
+            console.log(`Session: unable to get power of move ${move_name}`);
             foundMove = undefined;
             return;
           }
@@ -439,7 +449,7 @@ export class SessionComponent implements OnInit {
 
           // get the priority of the move
           if (!move.hasOwnProperty('priority')) {
-            console.log(`Session: unable to get priority of move ${foundMove.name}`);
+            console.log(`Session: unable to get priority of move ${move_name}`);
             foundMove = undefined;
             return;
           }
@@ -447,7 +457,7 @@ export class SessionComponent implements OnInit {
 
           // get the damage_class of the move
           if (!move.hasOwnProperty('damage_class') || !move['damage_class'].hasOwnProperty('name')) {
-            console.log(`Session: unable to get damage_class of move ${foundMove.name}`);
+            console.log(`Session: unable to get damage_class of move ${move_name}`);
             foundMove = undefined;
             return;
           }
@@ -455,14 +465,15 @@ export class SessionComponent implements OnInit {
 
           // get the type of the move
           if (!move.hasOwnProperty('type') || !move['type'].hasOwnProperty('name')) {
-            console.log(`Session: unable to get type of move ${foundMove.name}`);
+            console.log(`Session: unable to get type of move ${move_name}`);
             foundMove = undefined;
             return;
           }
           foundMove.type = move['type']['name'];
+          console.log(`Session: loaded move ${move_name}`);
         },
         error => {
-          console.log(`failed to get move with id ${move_id}`);
+          console.log(`failed to get the move ${move_name}`);
         }
       );
 
@@ -595,5 +606,9 @@ export class SessionComponent implements OnInit {
     damage *= effective;
 
     return Math.round(damage - 0.5);
+  }
+
+  public getMoves(): Move[] {
+    return this.cur_pokemon.moves;
   }
 }
