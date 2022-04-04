@@ -3,4 +3,4 @@ export const environment = {
 };
 
 //The URL to our AWS EC2 server.
-//export const url = 'http://localhost:5000/api'
+export const url = 'http://44.203.69.132:5000/api'
