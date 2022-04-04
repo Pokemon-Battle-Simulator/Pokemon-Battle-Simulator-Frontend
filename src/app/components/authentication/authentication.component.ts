@@ -1,3 +1,4 @@
+import { BattleDataService } from './../../services/battle-data.service';
 import { AppComponent } from './../../app.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -15,7 +16,8 @@ export class AuthenticationComponent implements OnInit {
   public user = new User(0, '', '', '', '', '', '')
   public errorMessage = ''
 
-  constructor(private userService: UserService, private router: Router, private appComponent: AppComponent) { }
+  constructor(private userService: UserService, private router: Router, private appComponent: AppComponent,
+    private battleDataService: BattleDataService) { }
 
   ngOnInit(): void {
 
@@ -69,6 +71,7 @@ export class AuthenticationComponent implements OnInit {
         this.appComponent.updateUserData(data.body.firstName, data.body.lastName, data.body.username, data.body.email, data.body.favoritePokemon)
 
         if(token){
+          this.battleDataService.changeUser(data.body);
           this.navigateToMenu()
         }
       },

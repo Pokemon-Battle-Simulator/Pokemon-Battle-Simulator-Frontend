@@ -56,4 +56,8 @@ input{
   background-color:#0275d8;
   color:white;
 }
+.error-message{
+  color:red;
+  letter-spacing: 1px;
+}
 

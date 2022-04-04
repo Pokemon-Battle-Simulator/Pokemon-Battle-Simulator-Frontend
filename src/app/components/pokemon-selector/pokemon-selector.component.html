@@ -3,9 +3,13 @@
   <button class="btn btn-primary" (click)='cancelCharacterSelection()'>Cancel</button>
 </div>
 
-<div *ngIf="messageBoolean" class='container showcaseContainer'>
-  <h2 class='showcaseName'>{{showcaseName}}</h2>
-  <img src={{showcaseSprite}} class='showcaseimage'/>
+<div #showcase *ngIf="messageBoolean" class=' showcaseContainer'>
+  <div class="card-title">
+    <h2 class='showcaseName'>{{showcaseName}}</h2>
+  </div>
+  <div class="showcaseImageContainer">
+    <img src={{showcaseSprite}} class='showcaseimage'/>
+  </div>
   <div *ngIf="messageBoolean">
     <p class='text-primary'>{{message}}</p>
   </div>

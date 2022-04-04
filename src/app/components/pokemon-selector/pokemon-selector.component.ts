@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { url } from '../../../environments/environment'
@@ -18,9 +18,11 @@ const sessionUrl = url + '/session'
 })
 export class PokemonSelectorComponent implements OnInit {
 
+  @ViewChild('showcase')
+  div: ElementRef
   public pokemonDataObjects = []
   public messageBoolean = false
-  message = 'Waiting for other player.'
+  public message = 'Waiting for other player.'
   public showcaseSprite = ''
   public showcaseName = ''
 
@@ -203,6 +205,9 @@ export class PokemonSelectorComponent implements OnInit {
   public setPokemonShowcase(image:string, name:string){
     this.showcaseSprite = image
     this.showcaseName = name
+
+    this.div.nativeElement.scrollIntoView({behavior: 'smooth'});
+
   }
 
   public connectToSession() {

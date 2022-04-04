@@ -17,4 +17,32 @@ img{
   text-align: center;
   margin-bottom:2%;
 }
-
+.card-title{
+  color:white;
+  height:100px;
+  background-color:rgb(88, 88, 88);
+  margin-top: 0%;
+  margin-left:0%;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding-top:5px;
+}
+h2{
+  letter-spacing: 2px;
+}
+.btn{
+  color:#0275d8;
+  border:solid #0275d8 2px;
+  background-color: white;
+}
+.btn:hover{
+  background-color:#0275d8;
+  color:white;
+}
+.shadow{
+  box-shadow: 10px 5px 5px grey;
+}
+.card{
+  margin:0 auto;
+  margin-top: 2%;
+}

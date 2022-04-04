@@ -94,3 +94,14 @@ img{
 .select-btn{
   margin-bottom:5%;
 }
+.showcaseContainer{
+  width:50%;
+  margin:0 auto;
+}
+.showcaseName{
+  text-align:center;
+  margin-top: 0%;
+}
+.showcaseImageContainer{
+  text-align:center;
+}
