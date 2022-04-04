@@ -58,6 +58,8 @@ input{
 }
 .error-message{
   color:red;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
-
+h3{
+  letter-spacing: 2px;
+}

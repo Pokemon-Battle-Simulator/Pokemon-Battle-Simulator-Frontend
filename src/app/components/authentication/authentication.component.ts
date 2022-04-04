@@ -46,15 +46,13 @@ export class AuthenticationComponent implements OnInit {
     this.userService.registerUser(this.user)
     .subscribe(
       data => {
-        console.log(data.username + ' has successfully registererd.')
+        console.log(data)
+        this.battleDataService.changeUser(data);
         this.navigateToMenu();
       },
       error => console.error(error)
     )
 
-    //See if there is a way to get a response object back that ensures
-    //the registration was successful. When successful then navigate to new route.
-    //this.navigateToManu()
   }
 
   public loginUser(event):void{
@@ -67,8 +65,6 @@ export class AuthenticationComponent implements OnInit {
         const token = data.headers.get('portal-token')
 
         sessionStorage.setItem('token', token)
-
-        this.appComponent.updateUserData(data.body.firstName, data.body.lastName, data.body.username, data.body.email, data.body.favoritePokemon)
 
         if(token){
           this.battleDataService.changeUser(data.body);
@@ -83,4 +79,5 @@ export class AuthenticationComponent implements OnInit {
   public navigateToMenu():void{
     this.router.navigateByUrl('/main-menu')
   }
+
 }
