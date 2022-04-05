@@ -213,6 +213,7 @@ export class PokemonSelectorComponent implements OnInit {
     // let user = new User(1, "Ash", "Ketchum", "ash@pallet.net", "ashketchum", "gottacatchemall", "Pikachu");
     let opp = new User(2, "Gary", "Oak", "gary@pallet.net", "blue", "smellyalater", "Raticate");
     let user: User;
+
     await this.battleDataService.user
       .subscribe(
         response => {
@@ -223,8 +224,52 @@ export class PokemonSelectorComponent implements OnInit {
       );
     let dummy_team = new Team(0, "placeholder", new User(0, "placeholder", "placeholder", "placeholder", "placeholder", "placeholder", "placeholder"), []);
     let user_poke = new Pokemon(0, pokeid, move1, move2, move3, move4);
-    let opp_poke = new Pokemon(0, 6, "mega-punch", "fire-punch", "thunder-punch", "scratch");
-    let session = new Session(1, true, user, opp, Status.CONNECTED, Status.CONNECTED, "", "", user_poke, opp_poke);
+
+    let rand_poke = Math.round(Math.random() * 151 + 0.5);
+
+    this.http.get(`https://pokeapi.co/api/v2/pokemon/${rand_poke}`).subscribe(
+      response => {
+        let opp_poke = new Pokemon(0, rand_poke, "", "", "", "");
+
+        if (!response.hasOwnProperty("moves")) {
+          console.log(`Selector: unable to load pokemon moves of ${rand_poke}`);
+        }
+
+        let moves: Object[] = response["moves"];
+        if (!moves[0].hasOwnProperty("move") || !moves[0]["move"].hasOwnProperty("name")) {
+          console.log(`Selector: unable to load first move of pokemon ${rand_poke}`);
+        } else {
+          opp_poke.move1 = moves[0]["move"]["name"];
+        }
+
+        if (!moves[1].hasOwnProperty("move") || !moves[1]["move"].hasOwnProperty("name")) {
+          console.log(`Selector: unable to load first move of pokemon ${rand_poke}`);
+        } else {
+          opp_poke.move2 = moves[1]["move"]["name"];
+        }
+
+        if (!moves[2].hasOwnProperty("move") || !moves[2]["move"].hasOwnProperty("name")) {
+          console.log(`Selector: unable to load first move of pokemon ${rand_poke}`);
+        } else {
+          opp_poke.move3 = moves[2]["move"]["name"];
+        }
+
+        if (!moves[3].hasOwnProperty("move") || !moves[3]["move"].hasOwnProperty("name")) {
+          console.log(`Selector: unable to load first move of pokemon ${rand_poke}`);
+        } else {
+          opp_poke.move4 = moves[3]["move"]["name"];
+        }
+
+        let session = new Session(1, true, user, opp, Status.CONNECTED, Status.CONNECTED, "", "", user_poke, opp_poke);
+
+        this.battleDataService.changeSession(session);
+        this.battleDataService.changeUser(user);
+        this.battleDataService.changePokemon(user_poke);
+
+        setTimeout(() => this.router.navigateByUrl('/session'), 5000);
+      },
+      error => console.log(`Unable to load pokemon ${rand_poke}`)
+    );
 
     // await this.pokemonService.addPokemon(user_poke).subscribe(
     //   response => {
@@ -252,11 +297,5 @@ export class PokemonSelectorComponent implements OnInit {
     //   session = await this.sessionService.getSession(session.id).toPromise();
     //   console.log(`${session.user1_status} + ${session.user2_status}`)
     // }
-
-    this.battleDataService.changeSession(session);
-    this.battleDataService.changeUser(user);
-    this.battleDataService.changePokemon(user_poke);
-
-    setTimeout(() => this.router.navigateByUrl('/session'), 5000);
   }
 }
