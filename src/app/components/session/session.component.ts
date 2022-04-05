@@ -32,9 +32,11 @@ export class SessionComponent implements OnInit {
   public first_move_text: string;
   public first_move_effectiveness: string;
   public first_move_result: string;
+  public first_move_effect_text: boolean = false;
   public second_move_text: string;
   public second_move_effectiveness: string;
   public second_move_result: string;
+  public second_move_effect_text: boolean = false;
   public effective: number = 1;
 
   private cur_user: User;
@@ -526,9 +528,11 @@ export class SessionComponent implements OnInit {
     this.first_move_text = "";
     this.first_move_effectiveness = "";
     this.first_move_result = "";
+    this.first_move_effect_text = false;
     this.second_move_text = "";
     this.second_move_effectiveness = "";
     this.second_move_result = "";
+    this.second_move_effect_text = false;
 
     console.log(`${this.session.user1_move}, ${this.session.user2_move}`);
     await this.getMove(this.session.user1_move).then(move => user1_move = move);
@@ -558,10 +562,12 @@ export class SessionComponent implements OnInit {
 
     // calculate the first move's damage
     let damage1: number = this.damage(user1_move, this.cur_pokemon, this.opp_pokemon);
+    let effective1 = this.effective;
     // calculate the second move's damage
     let damage2: number = this.damage(user2_move, this.opp_pokemon, this.cur_pokemon);
+    let effective2 = this.effective;
 
-    console.log(`${damage1}, ${damage2}`);
+    console.log(`${effective1}, ${damage1}, ${effective2}, ${damage2}`);
 
     // calculate the moves in order
     if (first == 1) {
@@ -573,12 +579,12 @@ export class SessionComponent implements OnInit {
         this.first_move_result = `Opponent's ${this.opp_pokemon.name} took ${Math.max(damage1, 1)} damage!`
 
         // is the move effective/not effective?
-        if (this.effective > 1) {
+        if (effective1 > 1) {
           this.first_move_effectiveness = "It's super effective!";
-          this.effective = 1;
-        } else if (this.effective < 1) {
-          this.first_move_effectiveness = "It's not ver effective...";
-          this.effective = 1;
+          this.first_move_effect_text = true;
+        } else if (effective1 < 1) {
+          this.first_move_effectiveness = "It's not very effective...";
+          this.first_move_effect_text = true;
         }
 
         // did the pokemon faint?
@@ -600,12 +606,12 @@ export class SessionComponent implements OnInit {
         this.second_move_result = `${this.cur_pokemon.name} took ${Math.max(damage2, 1)} damage!`
 
         // is the move effective/not effective?
-        if (this.effective > 1) {
+        if (effective2 > 1) {
           this.second_move_effectiveness = "It's super effective!";
-          this.effective = 1;
-        } else if (this.effective < 1) {
-          this.second_move_effectiveness = "It's not ver effective...";
-          this.effective = 1;
+          this.second_move_effect_text = true;
+        } else if (effective2 < 1) {
+          this.second_move_effectiveness = "It's not very effective...";
+          this.second_move_effect_text = true;
         }
 
         // did the pokemon faint?
@@ -627,12 +633,12 @@ export class SessionComponent implements OnInit {
         this.first_move_result = `${this.cur_pokemon.name} took ${Math.max(damage2, 1)} damage!`
 
         // is the move effective/not effective?
-        if (this.effective > 1) {
+        if (effective2 > 1) {
           this.first_move_effectiveness = "It's super effective!";
-          this.effective = 1;
-        } else if (this.effective < 1) {
-          this.first_move_effectiveness = "It's not ver effective...";
-          this.effective = 1;
+          this.first_move_effect_text = true;
+        } else if (effective2 < 1) {
+          this.first_move_effectiveness = "It's not very effective...";
+          this.first_move_effect_text = true;
         }
 
         // did the pokemon faint?
@@ -654,12 +660,12 @@ export class SessionComponent implements OnInit {
         this.second_move_result = `Opponent's ${this.opp_pokemon.name} took ${Math.max(damage1, 1)} damage!`
 
         // is the move effective/not effective?
-        if (this.effective > 1) {
+        if (effective1 > 1) {
           this.second_move_effectiveness = "It's super effective!";
-          this.effective = 1;
-        } else if (this.effective < 1) {
+          this.second_move_effect_text = true;
+        } else if (effective1 < 1) {
           this.second_move_effectiveness = "It's not very effective...";
-          this.effective = 1;
+          this.second_move_effect_text = true;
         }
 
         // did the pokemon faint?
@@ -734,11 +740,7 @@ export class SessionComponent implements OnInit {
     if (defender.types[1] && defender.types[1].half_damage_from.find(t => t == move.type))
       effective /= 2;
 
-    // if (effective > 1) {
-
-    // } else if (effective < 1) {
-
-    // }
+    this.effective = effective;
     damage *= effective;
 
     return Math.round(damage - 0.5);
