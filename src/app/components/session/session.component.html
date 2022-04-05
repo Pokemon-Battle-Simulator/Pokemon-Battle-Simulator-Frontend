@@ -33,10 +33,11 @@
 
     <div *ngIf="turn_result">
         <h4>{{first_move_text}}</h4>
-        <h4 *ngIf="!first_move_effectiveness">{{first_move_effectiveness}}</h4>
+        <h4 *ngIf="first_move_effect_text">{{first_move_effectiveness}}</h4>
         <h4>{{first_move_result}}</h4>
+        <br>
         <h4>{{second_move_text}}</h4>   
-        <h4 *ngIf="!second_move_effectiveness">{{second_move_effectiveness}}</h4>
+        <h4 *ngIf="second_move_effect_text">{{second_move_effectiveness}}</h4>
         <h4>{{second_move_result}}</h4>
     </div>
 
