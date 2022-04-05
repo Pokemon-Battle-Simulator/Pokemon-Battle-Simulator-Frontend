@@ -22,7 +22,7 @@
         <div class="card-content">
           <div class="card-title">
             <h3>{{pokemon.name}}</h3>
-            <h4># {{pokemon.order}}</h4>
+            <h4># {{pokemon.id}}</h4>
           </div>
           <div class="img-container">
             <img src={{pokemon.characterSelectionSprite}} />
@@ -35,7 +35,7 @@
           </div>
           <div class='button-container'>
             <button (click)='toggleMessage()' (click)='setPokemonShowcase(pokemon.characterSelectionSprite,
-            pokemon.name)' class='select-btn btn btn-primary'>Select</button> <!-- (click)='connectToSession()' -->
+            pokemon.name)' (click)='connectToSession(pokemon.id, pokemon.moveOne.name, pokemon.moveTwo.name, pokemon.moveThree.name, pokemon.moveFour.name)' class='select-btn btn btn-primary'>Select</button> <!-- (click)='connectToSession(pokemon)' -->
 
           </div>
         </div>

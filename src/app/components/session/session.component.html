@@ -1,14 +1,9 @@
-<p>session works!</p>
 <div>
-    <div> <!-- battle scene-->
+    <div>
+        <!-- battle scene-->
         <div class="opponent">
             <div class="hp-bar">
-                {{opp_pokemon.current_hp}}/{{opp_pokemon.stats[0]}}
-                {{opp_pokemon.stats[1]}}
-                {{opp_pokemon.stats[2]}}
-                {{opp_pokemon.stats[3]}}
-                {{opp_pokemon.stats[4]}}
-                {{opp_pokemon.stats[5]}}
+                HP: {{opp_pokemon.current_hp}}/{{opp_pokemon.stats[0]}}
             </div>
             <div class="front-sprite">
                 <img src={{opp_pokemon.sprite}}>
@@ -19,22 +14,37 @@
                 <img src={{cur_pokemon.sprite}}>
             </div>
             <div class="hp-bar">
-                {{cur_pokemon.current_hp}}/{{cur_pokemon.stats[0]}}
-                {{cur_pokemon.stats[1]}}
-                {{cur_pokemon.stats[2]}}
-                {{cur_pokemon.stats[3]}}
-                {{cur_pokemon.stats[4]}}
-                {{cur_pokemon.stats[5]}}
+                HP {{cur_pokemon.current_hp}}/{{cur_pokemon.stats[0]}}
             </div>
         </div>
     </div>
-    <div> <!-- what will you do textbox -->>
+    <div>
+        <!-- what will you do textbox -->>
 
     </div>
     <!-- move selection -->
-    <ng-container *ngFor='let move of cur_pokemon.moves'>
-        <div class="button-container">
-            <button (click)="moveSelect(move)" class="btn btn-primary">{{move}}</button>
-        </div>
-    </ng-container>
+    <div *ngIf="!endscreen">
+        <ng-container *ngFor='let move of getMoves()'>
+            <div class="button-container">
+                <button (click)="moveSelect(move.name)" class="btn btn-primary">{{move.name}}</button>
+            </div>
+        </ng-container>
+    </div>
+
+    <div *ngIf="turn_result">
+        <h4>{{first_move_text}}</h4>
+        <h4 *ngIf="!first_move_effectiveness">{{first_move_effectiveness}}</h4>
+        <h4>{{first_move_result}}</h4>
+        <h4>{{second_move_text}}</h4>   
+        <h4 *ngIf="!second_move_effectiveness">{{second_move_effectiveness}}</h4>
+        <h4>{{second_move_result}}</h4>
+    </div>
+
+    <div *ngIf="endscreen">
+        <h2>
+            {{winner.username}} Wins!!!
+        </h2>
+
+        <button (click)="exit()">Exit</button>
+    </div>
 </div>

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Session } from '../models/session';
+import { Session, Status } from '../models/session';
 import { url } from 'src/environments/environment';
 import { filter, Observable, take } from 'rxjs';
 
@@ -22,8 +22,8 @@ export class SessionService {
   }
 
   joinSession(): Observable<Session> {
-    return this.http.get<Session>(`${sessionUrl}/get/active`, this.httpOptions).pipe(
-      filter(ses => ses.user1_status == "EMPTY" || ses.user2_status == "EMPTY")
+    return this.http.get<Session>(`${sessionUrl}/findAll`, this.httpOptions).pipe(
+      filter(ses => ses.user1_status == Status.EMPTY || ses.user2_status == Status.EMPTY)
     );
   }
 
