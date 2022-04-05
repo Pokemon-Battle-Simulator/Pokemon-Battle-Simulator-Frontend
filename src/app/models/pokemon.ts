@@ -2,26 +2,23 @@ import { Team } from "./team"
 
 export class Pokemon {
     id:number
-    team:Team
     pokeId:number
-    move1_name:string
-    move2_name:string
-    move3_name:string
-    move4_name:string
+    move1:string
+    move2:string
+    move3:string
+    move4:string
 
     constructor(id:number,
-        team:Team,
         pokeId:number,
-        move1_name:string,
-        move2_name:string,
-        move3_name:string,
-        move4_name:string) {
+        move1:string,
+        move2:string,
+        move3:string,
+        move4:string) {
             this.id = id;
-            this.team = team;
             this.pokeId = pokeId;
-            this.move1_name = move1_name;
-            this.move2_name = move2_name;
-            this.move3_name = move3_name;
-            this.move4_name = move4_name;
+            this.move1 = move1;
+            this.move2 = move2;
+            this.move3 = move3;
+            this.move4 = move4;
     }
 }
